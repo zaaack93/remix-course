@@ -1,5 +1,7 @@
-import { LinksFunction } from "@remix-run/node";
+import { ActionFunctionArgs, LinksFunction, redirect } from "@remix-run/node";
 import NewNote , {links as NewNoteStyle} from "~/components/NewNote/NewNote";
+import { getStoredNotes,storeNotes } from "~/data/notes";
+
 
 export default function NotesPage() {
   return (
@@ -10,3 +12,18 @@ export default function NotesPage() {
 }
 
 export const links: LinksFunction = () => [...NewNoteStyle()];
+
+
+export const action = async ({request}:ActionFunctionArgs) => {
+  const body = await request.formData();
+  const noteData = {
+    id: new Date().toISOString(),
+    title: body.get('title') as string,
+    content: body.get('content') as string
+  }
+
+  const existingNotes = await getStoredNotes();
+  const updatedNotes = existingNotes.concat(noteData);
+  await storeNotes(updatedNotes);
+  return redirect(`/notes`);
+}
