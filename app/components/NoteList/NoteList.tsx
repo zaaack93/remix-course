@@ -1,3 +1,4 @@
+import { useActionData, useLoaderData } from '@remix-run/react';
 import styles from './NoteList.css?url';
 
 interface Note {
