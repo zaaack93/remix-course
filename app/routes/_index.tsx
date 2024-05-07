@@ -5,8 +5,8 @@ import homeStyles from "~/styles/home.css?url";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "Notes App" },
+    { name: "description", content: "Welcome to Notes app!" },
   ];
 };
 

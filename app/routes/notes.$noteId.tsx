@@ -1,7 +1,14 @@
-import { LoaderFunctionArgs, json } from "@remix-run/node";
+import { LoaderFunctionArgs, MetaFunction, json } from "@remix-run/node";
 import { Link, isRouteErrorResponse, useLoaderData, useRouteError } from "@remix-run/react";
 import { getStoredNotes } from "~/data/notes";
 import style from '~/styles/note-details.css?url';
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Notes App list" },
+    { name: "description", content: "Welcome to Notes app list!" },
+  ];
+};
 
 export const loader = async ({
   params,

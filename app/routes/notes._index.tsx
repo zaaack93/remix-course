@@ -1,9 +1,15 @@
-import { ActionFunctionArgs, LinksFunction, json, redirect } from "@remix-run/node";
+import { ActionFunctionArgs, LinksFunction, MetaFunction, json, redirect } from "@remix-run/node";
 import { isRouteErrorResponse, useLoaderData, useRouteError } from "@remix-run/react";
 import NewNote , {links as NewNoteStyle} from "~/components/NewNote/NewNote";
 import NoteList, {links as NoteListStyle} from "~/components/NoteList/NoteList";
 import { getStoredNotes,storeNotes } from "~/data/notes";
 
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Notes App list" },
+    { name: "description", content: "Welcome to Notes app list!" },
+  ];
+};
 
 export default function NotesPage() {
   const {notes} = useLoaderData<typeof loader>();
