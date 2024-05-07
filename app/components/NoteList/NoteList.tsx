@@ -1,4 +1,4 @@
-import { useActionData, useLoaderData } from '@remix-run/react';
+import { Link, useActionData, useLoaderData } from '@remix-run/react';
 import styles from './NoteList.css?url';
 
 interface Note {
@@ -32,7 +32,7 @@ function NoteList({ notes }: NoteListProps) {
                                     </time>
                                 </li>
                             </ul>
-                            <h2>{note.title}</h2>
+                            <Link to={"/notes/"+note.id}><h2>{note.title}</h2></Link>
                         </header>
                         <p>{note.content}</p>
                     </article>
