@@ -13,7 +13,7 @@ interface NoteListProps {
 function NoteList({ notes }: NoteListProps) {
     return (
         <ul id="note-list">
-            {notes.map((note, index) => (
+            {notes?.map((note, index) => (
                 <li key={note.id} className="note">
                     <article>
                         <header>

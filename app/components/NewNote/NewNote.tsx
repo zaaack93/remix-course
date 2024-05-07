@@ -1,22 +1,29 @@
+import { Form, useNavigation } from '@remix-run/react';
 import styles from './NewNote.css?url';
 
 import { LinksFunction } from "@remix-run/node";
 
 function NewNote() {
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === "submitting";
+
+
   return (
-    <form method="post" id="note-form">
+    <Form method="post" id="note-form">
       <p>
         <label htmlFor="title">Title</label>
         <input type="text" id="title" name="title" required />
       </p>
       <p>
         <label htmlFor="content">Content</label>
-        <textarea id="content" name="content" rows="5" required />
+        <textarea id="content" name="content" rows={5} required />
       </p>
       <div className="form-actions">
-        <button>Add Note</button>
+        <button disabled={isSubmitting}>{
+          isSubmitting ? "Adding Note..." : "Add Note"
+        }</button>
       </div>
-    </form>
+    </Form>
   );
 }
 
