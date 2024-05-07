@@ -16,10 +16,10 @@ export const links: LinksFunction = () => [...NewNoteStyle()];
 
 export const action = async ({request}:ActionFunctionArgs) => {
   const body = await request.formData();
+  
   const noteData = {
     id: new Date().toISOString(),
-    title: body.get('title') as string,
-    content: body.get('content') as string
+    ...Object.fromEntries(body)
   }
 
   const existingNotes = await getStoredNotes();
